@@ -1,0 +1,29 @@
+name: PHP syntax check
+
+on:
+  workflow_call:
+
+jobs:
+  php-syntax-check:
+    permissions:
+      pull-requests: write
+      contents: read
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Check PHP files
+        run: |
+          echo "Checking for PHP syntax errors.."
+          ok=true
+          for f in *.php **/*.php
+          do
+            php -l $f || ok=false
+          done
+          echo "Ok: $ok"
+          if [ "$ok" = "false" ]
+          then
+            exit 1;
+          fi
