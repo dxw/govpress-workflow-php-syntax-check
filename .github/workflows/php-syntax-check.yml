@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "Checking for PHP syntax errors.."
           ok=true
-          for f in *.php **/*.php
+          for f in $(git ls-files '*.php')
           do
             php -l $f || ok=false
           done
