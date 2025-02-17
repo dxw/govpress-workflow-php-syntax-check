@@ -3,10 +3,6 @@ name: PHP syntax check
 on:
   workflow_call:
 
-defaults:
-  run:
-    working-directory: ./wp-content
-
 jobs:
   php-syntax-check:
     permissions:
