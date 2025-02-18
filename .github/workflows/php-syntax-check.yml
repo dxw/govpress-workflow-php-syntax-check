@@ -15,6 +15,7 @@ jobs:
       - name: Check PHP files
         run: |
           echo "Checking for PHP syntax errors.."
+          ok=true
           for f in $(git ls-files '*.php')
           do
             php -l $f || ok=false
